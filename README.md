@@ -1,6 +1,5 @@
-Lua Virtual Machine
+# Lua Virtual Machine
 
-----
 
 A Lua virtual machine for blockchain in C++ version.
 
