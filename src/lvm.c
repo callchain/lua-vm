@@ -789,7 +789,7 @@ void luaV_execute (lua_State *L) {
   TValue *k;
   StkId base;
   ci->callstatus |= CIST_FRESH;  /* fresh invocation of 'luaV_execute" */
- newframe:  /* reentry point when frame changes (call/return) */
+  newframe:  /* reentry point when frame changes (call/return) */
   lua_assert(ci == L->ci);
   cl = clLvalue(ci->func);  /* local reference to function's closure */
   k = cl->p->k;  /* local reference to function's constant table */
@@ -799,6 +799,11 @@ void luaV_execute (lua_State *L) {
     Instruction i;
     StkId ra;
     vmfetch();
+    unsigned long long cost = OP_DROPS[GET_OPCODE(i)];
+    if (L->drops < cost) {
+      vmbreak;
+    }
+    L->drops -= cost;
     vmdispatch (GET_OPCODE(i)) {
       vmcase(OP_MOVE) {
         setobjs2s(L, ra, RB(i));

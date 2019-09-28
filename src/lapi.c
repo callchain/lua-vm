@@ -732,6 +732,10 @@ LUA_API int lua_getuservalue (lua_State *L, int idx) {
   return ttnov(L->top - 1);
 }
 
+LUA_API unsigned long long (lua_getdrops) (lua_State *L) {
+  return L->drops;
+}
+
 
 /*
 ** set functions (stack -> Lua)
@@ -892,6 +896,12 @@ LUA_API void lua_setuservalue (lua_State *L, int idx) {
   setuservalue(L, uvalue(o), L->top - 1);
   luaC_barrier(L, gcvalue(o), L->top - 1);
   L->top--;
+  lua_unlock(L);
+}
+
+LUA_API void lua_setdrops (lua_State *L, unsigned long long drops) {
+  lua_lock(L);
+  L->drops = drops;
   lua_unlock(L);
 }
 

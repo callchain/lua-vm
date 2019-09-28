@@ -233,9 +233,9 @@ OP_VARARG,/*	A B	R(A), R(A+1), ..., R(A+B-2) = vararg		*/
 OP_EXTRAARG/*	Ax	extra (larger) argument for previous opcode	*/
 } OpCode;
 
-
 #define NUM_OPCODES	(cast(int, OP_EXTRAARG) + 1)
 
+extern unsigned long long OP_DROPS[NUM_OPCODES];
 
 
 /*===========================================================================
