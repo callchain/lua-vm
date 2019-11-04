@@ -250,7 +250,7 @@ LUA_API void  (lua_createtable) (lua_State *L, int narr, int nrec);
 LUA_API void *(lua_newuserdata) (lua_State *L, size_t sz);
 LUA_API int   (lua_getmetatable) (lua_State *L, int objindex);
 LUA_API int  (lua_getuservalue) (lua_State *L, int idx);
-LUA_API unsigned long long (lua_getdrops) (lua_State *L);
+LUA_API long long (lua_getdrops) (lua_State *L);
 
 
 /*
@@ -265,7 +265,7 @@ LUA_API void  (lua_rawseti) (lua_State *L, int idx, lua_Integer n);
 LUA_API void  (lua_rawsetp) (lua_State *L, int idx, const void *p);
 LUA_API int   (lua_setmetatable) (lua_State *L, int objindex);
 LUA_API void  (lua_setuservalue) (lua_State *L, int idx);
-LUA_API void  (lua_setdrops) (lua_State *L, unsigned long long drops);
+LUA_API void  (lua_setdrops) (lua_State *L, long long drops);
 
 
 /*
