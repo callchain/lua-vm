@@ -799,11 +799,12 @@ void luaV_execute (lua_State *L) {
     Instruction i;
     StkId ra;
     vmfetch();
-    unsigned long long cost = OP_DROPS[GET_OPCODE(i)];
-    if (L->drops < cost) {
+    long long cost = OP_DROPS[GET_OPCODE(i)];
+    L->drops -= cost;
+    if (L->drops < 0) {
       vmbreak;
     }
-    L->drops -= cost;
+
     vmdispatch (GET_OPCODE(i)) {
       vmcase(OP_MOVE) {
         setobjs2s(L, ra, RB(i));

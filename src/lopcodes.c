@@ -122,7 +122,7 @@ LUAI_DDEF const lu_byte luaP_opmodes[NUM_OPCODES] = {
  ,opmode(0, 0, OpArgU, OpArgU, iAx)		/* OP_EXTRAARG */
 };
 
-unsigned long long OP_DROPS[NUM_OPCODES] = {
+long long OP_DROPS[NUM_OPCODES] = {
   1, // OP_MOVE
   1, // OP_LOADK
   1, // OP_LOADKX

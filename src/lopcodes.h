@@ -235,7 +235,7 @@ OP_EXTRAARG/*	Ax	extra (larger) argument for previous opcode	*/
 
 #define NUM_OPCODES	(cast(int, OP_EXTRAARG) + 1)
 
-extern unsigned long long OP_DROPS[NUM_OPCODES];
+extern long long OP_DROPS[NUM_OPCODES];
 
 
 /*===========================================================================
