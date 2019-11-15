@@ -8,16 +8,16 @@ Make blockchain as configurable software.
 ## Rationale
 
 ```
-+------------------------------+
-|                                     |                         +----------------------+
-|          Blockchain           | <----------------> |                           |
-|                                     |                         |                           |
-|  +------------------------+  |                         |   Smart Contract  |
-|  |                             |   |                        |                            |
-|  | Contract Libraries | <-------------------> |                            |
-|  |                             |  |                         +-----------------------+
-|  +------------------------+  |
-+------------------------------+
++--------------------------+
+|                          |                    +----------------------+
+|          Blockchain      | <----------------> |                      |
+|                          |                    |                      |
+|  +--------------------+  |                    |   Smart Contract     |
+|  |                    |  |                    |                      |
+|  | Contract Libraries | <-------------------> |                      |
+|  |                    |  |                    +----------------------+
+|  +--------------------+  |
++--------------------------+
 ```
 
  - Blockchain invoke Lua smart contact, push necessary parameters, include fee limit, global variable `msg` table {sender, address, value, height} and smart contract saved variable `contract` table if exists.
