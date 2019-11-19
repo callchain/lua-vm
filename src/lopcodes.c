@@ -128,63 +128,65 @@ long long OP_DROPS[NUM_OPCODES] = {
   1, // OP_LOADKX
   1, // OP_LOADBOOL
   1, // OP_LOADNIL
-  1, // OP_GETUPVAL
 
-  2, // OP_GETTABUP
-  2, // OP_GETTABLE
+  1, // OP_GETUPVAL
+  1, // OP_GETTABUP
+  1, // OP_GETTABLE
 
   2, // OP_SETTABUP
   2, // OP_SETUPVAL
   2, // OP_SETTABLE
 
-  1, // OP_NEWTABLE
+  2, // OP_NEWTABLE
 
-  1, // OP_SELF
+  3, // OP_SELF
 
-  1, // OP_ADD
-  1, // OP_SUB
-  4, // OP_MUL
+  2, // OP_ADD
+  2, // OP_SUB
+  2, // OP_MUL
   2, // OP_MOD
   4, // OP_POW
   4, // OP_DIV
   4, // OP_IDIV
-  1, // OP_BAND
-  1, // OP_BOR
-  1, // OP_BXOR
-  1, // OP_SHL
-  1, // OP_UNM
-  1, // OP_BNOT
-  1, // OP_NOT
-  2, // OP_LEN
+
+  2, // OP_BAND
+  2, // OP_BOR
+  2, // OP_BXOR
+  2, // OP_SHL
+  2, // OP_SHR
+  2, // OP_UNM
+  2, // OP_BNOT
+  2, // OP_NOT
+  16, // OP_LEN
 
   3, // OP_CANCAT
 
-  1, // OP_JMP
-  1, // OP_EQ
-  1, // OP_LT
-  1, // OP_LE
+  3, // OP_JMP
+  2, // OP_EQ
+  2, // OP_LT
+  2, // OP_LE
 
   1, // OP_TEST
-  1, // OP_TESTSET
+  2, // OP_TESTSET
 
-  6, // OP_CALL
-  8, // OP_TAILCALL
-  2, // OP_RETURN
+  5, // OP_CALL
+  20, // OP_TAILCALL
+  3, // OP_RETURN
 
   4, // OP_FORLOOP
 
-  4, // FORPREP
+  6, // FORPREP
 
   6, // OP_TFORCALL
-  6, // OP_TFORLOOP
+  4, // OP_TFORLOOP
 
-  1, // OP_SETLIST
+  12, // OP_SETLIST
 
-  2, // OP_CLOSURE
+  8, // OP_CLOSURE
 
-  2, // OP_VARARG
+  8, // OP_VARARG
 
-  2 // OP_EXTRAARG
+  1 // OP_EXTRAARG
 };
 
 

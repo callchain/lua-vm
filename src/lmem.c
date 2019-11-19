@@ -44,6 +44,8 @@
 
 #define MINSIZEARRAY	4
 
+#define MEMORY_UNIT_SIZE 4
+#define MEMORY_UNIT_SIZE_DROP_COST 1
 
 void *luaM_growaux_ (lua_State *L, void *block, int *size, size_t size_elems,
                      int limit, const char *what) {
@@ -83,6 +85,12 @@ void *luaM_realloc_ (lua_State *L, void *block, size_t osize, size_t nsize) {
   if (nsize > realosize && g->gcrunning)
     luaC_fullgc(L, 1);  /* force a GC whenever possible */
 #endif
+  // check memory fee
+  L->drops -= (nsize / MEMORY_UNIT_SIZE) * MEMORY_UNIT_SIZE_DROP_COST;
+  if (L->drops < 0) {
+    return NULL;
+  }
+
   newblock = (*g->frealloc)(g->ud, block, osize, nsize);
   if (newblock == NULL && nsize > 0) {
     lua_assert(nsize > realosize);  /* cannot fail when shrinking a block */

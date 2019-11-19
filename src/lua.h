@@ -265,7 +265,7 @@ LUA_API void  (lua_rawseti) (lua_State *L, int idx, lua_Integer n);
 LUA_API void  (lua_rawsetp) (lua_State *L, int idx, const void *p);
 LUA_API int   (lua_setmetatable) (lua_State *L, int objindex);
 LUA_API void  (lua_setuservalue) (lua_State *L, int idx);
-LUA_API void  (lua_setdrops) (lua_State *L, long long drops);
+LUA_API int   (lua_setdrops) (lua_State *L, long long drops);
 
 
 /*
