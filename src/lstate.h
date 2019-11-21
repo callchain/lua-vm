@@ -67,7 +67,6 @@ struct lua_longjmp;  /* defined in ldo.c */
 
 #define BASIC_STACK_SIZE        (2*LUA_MINSTACK)
 
-
 /* kinds of Garbage Collection */
 #define KGC_NORMAL	0
 #define KGC_EMERGENCY	1	/* gc was forced by an allocation failure */
@@ -200,6 +199,7 @@ struct lua_State {
   l_signalT hookmask;
   lu_byte allowhook;
   long long drops;
+  size_t memUsed;
 };
 
 

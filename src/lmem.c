@@ -82,6 +82,16 @@ void *luaM_realloc_ (lua_State *L, void *block, size_t osize, size_t nsize) {
   if (nsize > realosize && g->gcrunning)
     luaC_fullgc(L, 1);  /* force a GC whenever possible */
 #endif
+  /**
+   * check memory used in smart contact, memUsed record
+   * the left unrecorded memory size.
+   */
+  L->memUsed += nsize;
+  L->drops -= (L->memUsed / CONTRACT_MEM_UNIT_SIZE) * CONTRACT_MEN_UNIT_DROP_COST;
+  L->memUsed = L->memUsed % CONTRACT_MEM_UNIT_SIZE;
+  if (L->drops < 0) {
+    return NULL;
+  }
 
   newblock = (*g->frealloc)(g->ud, block, osize, nsize);
   if (newblock == NULL && nsize > 0) {

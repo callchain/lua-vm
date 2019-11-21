@@ -13,7 +13,6 @@
 #include "llimits.h"
 #include "lua.h"
 
-
 /*
 ** This macro reallocs a vector 'b' from 'on' to 'n' elements, where
 ** each element has size 'e'. In case of arithmetic overflow of the
@@ -27,6 +26,13 @@
 ** false due to limited range of data type"; the +1 tricks the compiler,
 ** avoiding this warning but also this optimization.)
 */
+
+/* contract mem unit size for caculate */
+#define CONTRACT_MEM_UNIT_SIZE 16
+/* contract mem unit call drop cost  */
+#define CONTRACT_MEN_UNIT_DROP_COST 2
+
+
 #define luaM_reallocv(L,b,on,n,e) \
   (((sizeof(n) >= sizeof(size_t) && cast(size_t, (n)) + 1 > MAX_SIZET/(e)) \
       ? luaM_toobig(L) : cast_void(0)) , \
@@ -64,6 +70,7 @@ LUAI_FUNC void *luaM_realloc_ (lua_State *L, void *block, size_t oldsize,
 LUAI_FUNC void *luaM_growaux_ (lua_State *L, void *block, int *size,
                                size_t size_elem, int limit,
                                const char *what);
+
 
 #endif
 
