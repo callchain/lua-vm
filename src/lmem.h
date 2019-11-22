@@ -28,7 +28,7 @@
 */
 
 /* contract mem unit size for caculate */
-#define CONTRACT_MEM_UNIT_SIZE 16
+#define CONTRACT_MEM_UNIT_SIZE 128
 /* contract mem unit call drop cost  */
 #define CONTRACT_MEN_UNIT_DROP_COST 2
 

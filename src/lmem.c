@@ -87,10 +87,13 @@ void *luaM_realloc_ (lua_State *L, void *block, size_t osize, size_t nsize) {
    * the left unrecorded memory size.
    */
   L->memUsed += nsize;
-  L->drops -= (L->memUsed / CONTRACT_MEM_UNIT_SIZE) * CONTRACT_MEN_UNIT_DROP_COST;
-  L->memUsed = L->memUsed % CONTRACT_MEM_UNIT_SIZE;
+  if (L->drops != 0)
+  {
+    L->drops -= (L->memUsed / CONTRACT_MEM_UNIT_SIZE) * CONTRACT_MEN_UNIT_DROP_COST;
+    L->memUsed = L->memUsed % CONTRACT_MEM_UNIT_SIZE;
+  }
   if (L->drops < 0) {
-    return NULL;
+    luaD_throw(L, LUA_ERRMEM);
   }
 
   newblock = (*g->frealloc)(g->ud, block, osize, nsize);
