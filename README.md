@@ -1,9 +1,9 @@
 # Lua Virtual Machine
 
+A Lua virtual machine for blockchain in C/C++ version. Blockchain embed this Lua virtual machine to execute Lua smart contract,  make blockchain as configurable system. Also blockchain can provide syscall for Lua smart contract to interact with each others.
 
-A Lua virtual machine for blockchain in C++ version.
+In this Lua virtual machine, io, thread and coroutine libraries are removed, only support basic lua functions.
 
-Make blockchain as configurable software.
 
 ## Rationale
 
@@ -20,12 +20,21 @@ Make blockchain as configurable software.
 +--------------------------+
 ```
 
- - Blockchain invoke Lua smart contact, push necessary parameters, include fee limit, global variable `msg` table {sender, address, value, height} and smart contract saved variable `contract` table if exists.
- - Smart contract executes Lua bytecode and stops if bytecode execute finished or fee limit run out.
- - When needed, smart contract call blockchain provided smart contract libraries.
- - When smart contract stops, blockchain save smart contract global variable `contract` if exists. 
+- Blockchain call Lua smart contract, push global parameters including `fee limit`, global variable `msg` table as  {`sender`, `address`, `value`, `height`}  and smart contract saved variable `contract`.
+- Lua smart contract execute Lua bytecode and stops when bytecode execute finished or contract fee limit run out.
+- Smart contract may call blockchain system call libraries when it is necessary.
+- Smart contract return one integer to indicate success or failure, when return 0, it is success, otherwise it is failure.
+- After smart contract stop, blockchain automatic save smart contract's global variable `contract` if it is modified.
 
-## Instruction CALL Drops Cost
+## Fee Cost
+
+For Turing system, it should be stoppable. In blockchain it also should use fee limit to stop smart contract otherwise smart contract will hack down blockchain. In Lua virtual machine, the fee cost include memory cost and instruction cost. Memory cost is used to limit memroy usage, instruction cost is used to limit instruction steps.
+
+### Memory Fee Cost
+
+In Lua virtal machine, smart contract memory used is divided as memory unit. In this virtual machine, the memroy unit is 128 bytes as `CONTRACT_MEM_UNIT_SIZE`. Each memory unit has memory price. The memroy price is 2 CALL drops as `CONTRACT_MEN_UNIT_DROP_COST`.
+
+###  Instruction Fee Cost
 
 | OP_CODE  | Cost(Drops)  |  Memo |
 | ------------ | ------------ | ------------ |
@@ -78,6 +87,3 @@ Make blockchain as configurable software.
 | OP_EXTRAARG |  1 |   |
 
 
-## Tailored Lib
-
-We tailored io, fs and coroutine in Lua.
