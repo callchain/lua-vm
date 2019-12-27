@@ -20,7 +20,7 @@ In this Lua virtual machine, io, thread and coroutine libraries are removed, onl
 +--------------------------+
 ```
 
-- Blokchain set fee limit by `lua_setdrops` api to limit contract execution.
+- Blockchain set fee limit by `lua_setdrops` api to limit contract execution.
 - Blockchain call Lua smart contract, push global parameters including `fee limit`, global variable `msg` table as  {`sender`, `address`, `value`, `height`}  and smart contract saved variable `contract`.
 - Lua smart contract execute Lua bytecode and stops when bytecode execute finished or contract fee limit run out.
 - Smart contract may call blockchain system call libraries when it is necessary.
