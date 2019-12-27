@@ -9,13 +9,13 @@ In this Lua virtual machine, io, thread and coroutine libraries are removed, onl
 
 ```
 +--------------------------+
-|                          |                    +--------------------+
-|        Blockchain        | <----------------> |                    |
-|                          |                    |                    |
-|  +--------------------+  |                    |   Smart Contract   |
-|  |                    |  |                    |                    |
-|  | Contract Libraries | <-------------------> |                    |
-|  |                    |  |                    +--------------------+
+|                          |                 +--------------------+
+|        Blockchain        | <-------------> |                    |
+|                          |                 |                    |
+|  +--------------------+  |                 |   Smart Contract   |
+|  |                    |  |                 |                    |
+|  | Contract Libraries | <----------------> |                    |
+|  |                    |  |                 +--------------------+
 |  +--------------------+  |
 +--------------------------+
 ```
@@ -37,7 +37,7 @@ In Lua virtal machine, smart contract memory used is divided as memory unit. In 
 ###  Instruction Fee Cost
 
 | OP_CODE  | Cost(Drops)  |  Memo |
-| ------------ | ------------ | ------------ |
+| ------------ | ------------: | ------------ |
 | OP_MOVE  |  1 |   |
 | OP_LOADK | 1  |   |
 | OP_LOADKX  | 1  |   |
